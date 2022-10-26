@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Mems-Generator</title>
+</head>
+
+<body onload="onInit()">
+
+    <header class="main-header">
+        <div class="logo"><img src="/imgs/LOGO.png" alt=""></div>
+        <nav class="header-nav">
+            <ul class="main-nav">
+                <li><a href="#">Mems</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">About</a></li>
+    
+            </ul>
+        </nav>
+    </header>
+
+
+    <section class="main-gallery-section ">
+        <div class="search-input"><input type="text" name="mems-search" placeholder="Search"></div>
+        <section class="mems-gallery"></section>
+    </section>
+
+    <section class="main-editor-section hide" >
+        <button class="back-to-gallery" onclick="toggleMainSections()">Back To Gallery</button>
+        <div class="canvas-container">
+            <canvas id="my-canvas" width="500" height="500"></canvas>
+        </div>
+
+        <section class="control-box">
+            <input id="text-input" type="text" name="mems-search" placeholder="Enter your line">
+            <button onclick="onTextInput()">Submit text</button>
+            <button>up</button>
+            <button>down</button>
+            <button>color</button>
+            <button>swich line</button>
+            <button>font family</button>
+            <button>font size</button>
+            <button>l alignment</button>
+            <button>c alignment</button>
+            <button>r alignment</button>
+            <button>Delete line</button>
+        </section>
+    </section>
+
+
+    <script src="/js/services/utils-service.js"></script>
+    <script src="/js/services/editor-service.js"></script>
+    <script src="/js/services/gallery-service.js"></script>
+    <script src="/js/controllers/gallery-controller.js"></script>
+    <script src="/js/controllers/editor-controller.js"></script>
+</body>
+
+</html>

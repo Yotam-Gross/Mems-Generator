@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: aqua;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.main-header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50px;
+    background-color: white;
+}
+
+.mems-gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    
+    gap: 10px;
+  
+}
+
+canvas{
+    background-color: white;
+    border: 1px solid black;
+}
+
+.hide{
+    display: none;
+}
+
