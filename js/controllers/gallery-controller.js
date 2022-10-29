@@ -11,7 +11,7 @@ function renderGallery(){
     const gallery = getGallery()
 
     var strHTML = gallery.map(mems => 
-        `<img class="img-gallery" id="${mems.id}" src="/imgs/${mems.url}"
+        `<img class="img-gallery" id="${mems.id}" src="./imgs/${mems.url}"
          onclick="renderEditor('${mems.id}')">`
     )
 

@@ -26,11 +26,11 @@ img {
 
 @font-face {
     font-family: roboto;
-    src: url(/fonts/Roboto-Regular.ttf);
+    src: url("/fonts/Roboto-Regular.ttf");
 }
 @font-face {
     font-family: roboto-italic;
-    src: url(/fonts/Roboto-Italic.ttf);
+    src: url("/fonts/Roboto-Italic.ttf");
 }
 
 /* LAY-OUT */
