@@ -85,29 +85,49 @@ function renderLines() {
     gCtx.strokeText(line.text, userPrefs.pos.x, userPrefs.pos.y)
 
     userPrefs.textLength = getLineLength(gCtx, line.text).width
-
-    // drawRect(userPrefs.pos.x, userPrefs.pos.y, userPrefs.fontSize, userPrefs.textLength)
 })
+drawRect()
+}
+
+function onAlignText(val) {
+    setAlignText(val)
+    renderImg()
+    renderLines()
 }
 
 function onSelectTextColor() {
     const selectedColor = document.querySelector('.text-color-pref').value
     setSelectedColor(selectedColor)
+    renderImg()
+    renderLines()
+}
+
+function onSelectStrokeColor() {
+    const selectedColor = document.querySelector('.stroke-color-pref').value
+    setSelectedStrokeColor(selectedColor)
+    renderImg()
+    renderLines()
 }
 
 function onSelectFontFamily() {
 
     var newFont = document.querySelector('.font-family-pref').value
     setFontFamily(newFont)
+    renderImg()
+    renderLines()
 }
 
 function onFontSize(val) {
     setNewFontSize(val)
+    renderImg()
+    renderLines()
 }
 
 function onDown(ev) {
     console.log('down');
     const pos = getEvPos(ev)
+    renderImg()
+    renderLines()
 
     if (!isLineClicked(pos)) return
     
@@ -118,8 +138,7 @@ function onDown(ev) {
 
 function onMove(ev) {
 
-    const { isDrag } = getSelectedLine().userPrefs
-    console.log(isDrag)
+    const { isDrag } = getDragLine().userPrefs
     if (!isDrag) return
     const pos = getEvPos(ev)
 
@@ -133,7 +152,7 @@ function onMove(ev) {
 }
 
 function moveLine(dx, dy) {
-    var line = getSelectedLine().userPrefs
+    var line = getDragLine().userPrefs
     line.pos.x += dx
     line.pos.y += dy
 }
@@ -144,10 +163,15 @@ function onUp(ev) {
     document.body.style.cursor = 'auto'
 }
 
-function drawRect(x, y, fontSize, textLength) {
+function drawRect() {
 
+    var selctedLine = getLines().find(line => line.userPrefs.isSelect === true)
+    if(!selctedLine) return
     gCtx.strokeStyle = 'black'
-    gCtx.strokeRect(x - (fontSize / 2), y - fontSize, textLength + (fontSize), fontSize + (fontSize / 2))
+    gCtx.strokeRect(selctedLine.userPrefs.pos.x - (selctedLine.userPrefs.fontSize / 2),
+    selctedLine.userPrefs.pos.y - selctedLine.userPrefs.fontSize,
+    selctedLine.userPrefs.textLength + (selctedLine.userPrefs.fontSize),
+    selctedLine.userPrefs.fontSize + (selctedLine.userPrefs.fontSize / 2))
 
 }
 
@@ -174,4 +198,11 @@ function onBackToGallery() {
 
     cleanUserSetion()
     document.getElementById("text-input").value = ''
+}
+
+function onDeleteLine(){
+    deleteLine()
+    renderImg()
+    renderLines()
+    console.log('deleting')
 }

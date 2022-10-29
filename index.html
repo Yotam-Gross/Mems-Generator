@@ -40,7 +40,7 @@
         <section class="control-box">
             <h2 class="editor-title" style="display:inline">Edit Text Lines</h2>
             <button onclick="onTextInput()">Submit text</button>
-            <button>Delete line</button>
+            <button onclick="onDeleteLine()">Delete line</button>
 
             <section class="text-editor-block">
                 <div class="text-editor-buttons">
@@ -53,11 +53,11 @@
                 </select>
                 <button onclick="onFontSize(5)">A+</button>
                 <button onclick="onFontSize(-5)">A-</button>
-                <button>l</button>
-                <button>c</button>
-                <button>r</button>
-                <input class="text-color-pref" type="color" onchange="onSelectTextColor()">
-                <input class="text-color-pref" type="color" onchange="onSelectStrokeColor()">
+                <button onclick="onAlignText(100)">l</button>
+                <button onclick="onAlignText(200)">c</button>
+                <button onclick="onAlignText(300)">r</button>
+                <input class="text-color-pref" type="color" value="#ffffff" onchange="onSelectTextColor()">
+                <input class="stroke-color-pref" type="color"  onchange="onSelectStrokeColor()">
                 </div>
                 <hr />
                 <input class="line-input" id="text-input" type="text" name="mems-search" placeholder="Enter your line">

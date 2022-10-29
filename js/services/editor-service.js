@@ -3,17 +3,17 @@
 
 var gLines = []
 var gUserPrefs = {
-    textColor: '#000',
-    strokeColor: '#FFAEBC',
+    textColor: 'white',
+    strokeColor: 'black',
     fontFamily: 'impact',
-    fontSize: 40,
+    fontSize: 60,
     isDrag: false,
     isSelect: false,
 }
 
 function createPosCenter() {
     var pos = {}
-    pos.x = 100
+    pos.x = 200
     pos.y = 200
 
     return pos
@@ -38,7 +38,7 @@ function isLineClicked(clickedPos) {
             clickedPos.y > pos.y - fontSize) {
                 setLineSelected(true, i)
                 setLineDrag(true, i)
-                console.log('line clicked')
+                drawRect(i)
                 return true    
             } 
         }
@@ -48,7 +48,6 @@ function setLineDrag(isDrag, i) {
     if(!isDrag) {
         const line = gLines.find(pref => pref.userPrefs.isDrag === true)
         line.userPrefs.isDrag = false
-        console.log(line, line.userPrefs.isDrag)
         
     }
     else{
@@ -61,21 +60,51 @@ function getLineLength(ctx, text) {
     return ctx.measureText(text)
 }
 
-function getSelectedLine() {
-   const selectedLine = gLines.find(line => line.userPrefs.isDrag === true)
+function getDragLine() {
+   const dragLine = gLines.find(line => line.userPrefs.isDrag === true)
+    return dragLine
+}
+
+function getSelectedLine(){
+    const selectedLine = gLines.find(line => line.userPrefs.isSelect === true)
     return selectedLine
 }
 
 function setSelectedColor(color) {
-    gUserPrefs.textColor = color
+    var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
+    if(i !== -1) gLines[i].userPrefs.textColor = color
+    
+    return gUserPrefs.textColor = color
+    
+}
+
+function setSelectedStrokeColor(color) {
+    var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
+    if(i !== -1) gLines[i].userPrefs.strokeColor = color
+    
+    return gUserPrefs.strokeColor = color
+    
 }
 
 function setFontFamily(newFontFamily) {
-    gUserPrefs.fontFamily = newFontFamily
+
+    var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
+    if(i !== -1) gLines[i].userPrefs.fontFamily = newFontFamily
+    
+    return gUserPrefs.fontFamily = newFontFamily
 }
 
 function setNewFontSize(val) {
-    gUserPrefs.fontSize += val
+    var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
+    if(i !== -1) gLines[i].userPrefs.fontSize += val
+    
+    return gUserPrefs.fontSize += val
+    
+}
+
+function setAlignText(val){
+    var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
+    if(i !== -1) gLines[i].userPrefs.pos.x = val
 }
 
 function setLineSelected(isSelect, i) {
@@ -83,7 +112,7 @@ function setLineSelected(isSelect, i) {
         line.userPrefs.isSelect = false
     })
     gLines[i].userPrefs.isSelect = isSelect
-    gUserPrefs.isSelect = false
+  
 }
 
 function getLines(){
@@ -93,11 +122,17 @@ function getLines(){
 function cleanUserSetion(){
     gLines = []
     gUserPrefs = {
-        textColor: '#000',
-        strokeColor: '#FFAEBC',
+        textColor: 'white',
+        strokeColor: 'black',
         fontFamily: 'impact',
-        fontSize: 40,
+        fontSize: 60,
         isDrag: false,
         isSelect: false,
     }    
+}
+
+function deleteLine(){
+    var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
+    gLines.splice(i, 1)
+    console.log('delet', i)
 }
