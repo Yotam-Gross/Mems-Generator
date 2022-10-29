@@ -171,4 +171,7 @@ function onBackToGallery() {
     elGallery.classList.remove('hide')
     var elEditor = document.querySelector('.main-editor-section')
     elEditor.classList.add('hide')
+
+    cleanUserSetion()
+    document.getElementById("text-input").value = ''
 }

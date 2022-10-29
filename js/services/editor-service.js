@@ -89,3 +89,15 @@ function setLineSelected(isSelect, i) {
 function getLines(){
     return gLines
 }
+
+function cleanUserSetion(){
+    gLines = []
+    gUserPrefs = {
+        textColor: '#000',
+        strokeColor: '#FFAEBC',
+        fontFamily: 'impact',
+        fontSize: 40,
+        isDrag: false,
+        isSelect: false,
+    }    
+}
