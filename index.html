@@ -9,45 +9,60 @@
     <title>Mems-Generator</title>
 </head>
 
-<body onload="onInit()">
+<body class="main-layout" onload="onInit()">
 
-    <header class="main-header">
-        <div class="logo"><img src="/imgs/LOGO.png" alt=""></div>
+
+    <header class="main-header full">
+        <div class="logo "><img src="/imgs/LOGO.png" alt=""></div>
         <nav class="header-nav">
             <ul class="main-nav">
                 <li><a href="#">Mems</a></li>
-                <li><a href="#">Gallery</a></li>
+                <li><a onclick="onBackToGallery()" href="#">Gallery</a></li>
                 <li><a href="#">About</a></li>
-    
+
             </ul>
         </nav>
     </header>
 
 
+
     <section class="main-gallery-section ">
-        <div class="search-input"><input type="text" name="mems-search" placeholder="Search"></div>
+        <div class="search-gallery"><input class="search-input" type="text" name="mems-search" placeholder="Search"></div>
         <section class="mems-gallery"></section>
     </section>
 
-    <section class="main-editor-section hide" >
-        <button class="back-to-gallery" onclick="toggleMainSections()">Back To Gallery</button>
+    <section class="main-editor-section hide">
         <div class="canvas-container">
-            <canvas id="my-canvas" width="500" height="500"></canvas>
+            <a class="back-to-gallery" onclick="onBackToGallery()" href="#">< Back To Gallery</a>
+           <canvas id="my-canvas" width="500" height="500"></canvas>
         </div>
 
         <section class="control-box">
-            <input id="text-input" type="text" name="mems-search" placeholder="Enter your line">
+            <h2 class="editor-title" style="display:inline">Edit Text Lines</h2>
             <button onclick="onTextInput()">Submit text</button>
-            <button>up</button>
-            <button>down</button>
-            <button>color</button>
-            <button>swich line</button>
-            <button>font family</button>
-            <button>font size</button>
-            <button>l alignment</button>
-            <button>c alignment</button>
-            <button>r alignment</button>
             <button>Delete line</button>
+
+            <section class="text-editor-block">
+                <div class="text-editor-buttons">
+                <select class="font-family-pref" onchange="onSelectFontFamily()">
+                    <option value="impact">Impact</option>
+                    <option value="monaco">Monaco</option>
+                    <option value="menlo">Menlo</option>
+                    <option value="consolas">Consolas</option>
+                    <option value="inconsolata">Inconsolata</option>
+                </select>
+                <button onclick="onFontSize(5)">A+</button>
+                <button onclick="onFontSize(-5)">A-</button>
+                <button>l</button>
+                <button>c</button>
+                <button>r</button>
+                <input class="text-color-pref" type="color" onchange="onSelectTextColor()">
+                <input class="text-color-pref" type="color" onchange="onSelectStrokeColor()">
+                </div>
+                <hr />
+                <input class="line-input" id="text-input" type="text" name="mems-search" placeholder="Enter your line">
+            </section>
+            <button class="share">Share</button>
         </section>
     </section>
 
