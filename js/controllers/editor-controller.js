@@ -210,8 +210,8 @@ function onBackToGallery() {
     var elHeader = document.querySelector('header')
     elHeader.classList.remove('hide')
 
-    // setTimeout(() => {var elFooter = document.querySelector('footer')
-    // elFooter.classList.remove('hide')}, 100) 
+    setTimeout(() => {var elFooter = document.querySelector('footer')
+    elFooter.classList.remove('hide')}, 100) 
 
     var elFooterBuffer = document.querySelector('.footer-buffer')
     elFooterBuffer.classList.remove('hide')
