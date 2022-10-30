@@ -11,7 +11,7 @@
 </head>
 
 <body class="main-layout" onload="onInit()">
-
+<div class="screen full" onclick="toggleMenue()"></div>
 
     <header class="full hide">
         <div class="main-header">
@@ -22,6 +22,7 @@
                     <li><a onclick="onBackToGallery()" href="#">Gallery</a></li>
                 </ul>
             </nav>
+            <button class="btn-header hide" onclick="toggleMenue()">☰</button>
         </div>
     </header>
 
@@ -104,6 +105,13 @@
     <footer class="full hide">
         <small>All rights Bla Bla</small>
     </footer>
+        
+    <script>
+        function toggleMenue() {
+            document.body.classList.toggle('menu-open')
+        }
+    </script>
+
     <script src="./js/services/utils-service.js"></script>
     <script src="./js/services/upload-service.js"></script>
     <script src="./js/services/editor-service.js"></script>

@@ -209,10 +209,8 @@ function onBackToGallery() {
     elGallery.classList.remove('hide')
     var elHeader = document.querySelector('header')
     elHeader.classList.remove('hide')
-
-    setTimeout(() => {var elFooter = document.querySelector('footer')
-    elFooter.classList.remove('hide')}, 100) 
-
+    var elFooter = document.querySelector('footer')
+    elFooter.classList.remove('hide') 
     var elFooterBuffer = document.querySelector('.footer-buffer')
     elFooterBuffer.classList.remove('hide')
     var elEditor = document.querySelector('.main-editor-section')
