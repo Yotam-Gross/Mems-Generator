@@ -13,9 +13,21 @@ function renderEditor(id) {
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     onMem()
+    renderStickers()
     addListeners()
     renderImg()
 
+}
+
+function renderStickers(){
+
+    var stickers = getStickers()
+
+    var strHTML = stickers.map(sticker =>
+        `<i onclick="renderNewLine('${sticker}')">${sticker}</i>`)
+
+    var elStickerContainer = document.querySelector('.stickers-gallery')
+    elStickerContainer.innerHTML = strHTML.join('')
 }
 
 function renderImg() {
@@ -36,8 +48,15 @@ function onMem() {
 function addListeners() {
     addMouseListeners()
 
+    var input = document.querySelector(".line-input")
+    input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          onTextInput()
+        }
+      })
+
     window.addEventListener('resize', () => {
-        resizeCanvas()
         renderImg()
     })
 }
@@ -68,7 +87,7 @@ function renderNewLine(text) {
     setNewLine({ userPrefs, text })
 }
 
-function renderLines() {
+function renderLines(isLineClicked) {
    
     var lines = getLines()
 
@@ -86,7 +105,7 @@ function renderLines() {
 
     userPrefs.textLength = getLineLength(gCtx, line.text).width
 })
-drawRect()
+if (isLineClicked)drawRect()
 }
 
 function onAlignText(val) {
@@ -126,10 +145,10 @@ function onFontSize(val) {
 function onDown(ev) {
     console.log('down');
     const pos = getEvPos(ev)
+    
     renderImg()
-    renderLines()
-
-    if (!isLineClicked(pos)) return
+    if (!isLineClicked(pos)) return renderLines(false)
+    renderLines(true)
     
 
     gStartPos = pos
@@ -147,14 +166,8 @@ function onMove(ev) {
     moveLine(dx, dy)
     gStartPos = pos
     renderImg()
-    renderLines()
+    renderLines(true)
 
-}
-
-function moveLine(dx, dy) {
-    var line = getDragLine().userPrefs
-    line.pos.x += dx
-    line.pos.y += dy
 }
 
 function onUp(ev) {
@@ -178,6 +191,7 @@ function drawRect() {
 function onTextInput() {
 
     var text = document.getElementById("text-input").value
+    document.getElementById("text-input").value = ''
     renderNewLine(text)
 }
 
@@ -193,8 +207,18 @@ function getEvPos(ev) {
 function onBackToGallery() {
     var elGallery = document.querySelector('.main-gallery-section')
     elGallery.classList.remove('hide')
+    var elHeader = document.querySelector('header')
+    elHeader.classList.remove('hide')
+
+    // setTimeout(() => {var elFooter = document.querySelector('footer')
+    // elFooter.classList.remove('hide')}, 100) 
+
+    var elFooterBuffer = document.querySelector('.footer-buffer')
+    elFooterBuffer.classList.remove('hide')
     var elEditor = document.querySelector('.main-editor-section')
     elEditor.classList.add('hide')
+    var elEditor = document.querySelector('.hero-image')
+    elEditor.classList.add('remove')
 
     cleanUserSetion()
     document.getElementById("text-input").value = ''
@@ -205,4 +229,13 @@ function onDeleteLine(){
     renderImg()
     renderLines()
     console.log('deleting')
+}
+
+function downloadImg(elLink){
+    const imgContent = gElCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
+}
+
+function getSavedGallery() {
+    return gSavedMems
 }

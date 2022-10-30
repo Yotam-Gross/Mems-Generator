@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/705d92428b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/main.css">
     <title>Mems-Generator</title>
 </head>
@@ -12,62 +13,99 @@
 <body class="main-layout" onload="onInit()">
 
 
-    <header class="main-header full">
-        <div class="logo "><img src="./imgs/LOGO.png" alt=""></div>
-        <nav class="header-nav">
-            <ul class="main-nav">
-                <li><a href="#">Mems</a></li>
-                <li><a onclick="onBackToGallery()" href="#">Gallery</a></li>
-                <li><a href="#">About</a></li>
-
-            </ul>
-        </nav>
+    <header class="full hide">
+        <div class="main-header">
+            <div onclick="showHero()" class="logo"><img src="./imgs/LOGO.png" alt=""></div>
+            <nav class="header-nav">
+                <ul class="main-nav">
+                    <li><a onclick="onSavedMems()" href="#">Mems</a></li>
+                    <li><a onclick="onBackToGallery()" href="#">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
+ 
+        <div class="hero-image full">
+            <div class="hero-text">
+              <h1>Walcom To The Mem`s Generator</h1>
+              <p>Build a custoom "mems" with simple tools</p>
+              <button onclick="onBackToGallery()" class="mem-actions lets-go">START NOW</button>
+            </div>
+          </div>
 
 
-    <section class="main-gallery-section ">
-        <div class="search-gallery"><input class="search-input" type="text" name="mems-search" placeholder="Search"></div>
+
+    <section class="main-gallery-section hide">
+        <div class="search-gallery"><input onkeyup="serachMemInGallery()" class="search-input" type="text"
+                name="mems-search" placeholder="Search"></div>
+        <div class="keywords-search">
+            <ul class="keywords-search-list clean-list">
+            </ul>
+        </div>
         <section class="mems-gallery"></section>
+    </section>
+
+    <section class="main-saved-section hide">
+        <div class="saved-mems-gallery">
+        </div>
     </section>
 
     <section class="main-editor-section hide">
         <div class="canvas-container">
-            <a class="back-to-gallery" onclick="onBackToGallery()" href="#">< Back To Gallery</a>
-           <canvas id="my-canvas" width="500" height="500"></canvas>
+            <a class="back-to-gallery" onclick="onBackToGallery()" href="#">
+                < Back To Gallery</a>
+                    <canvas id="my-canvas" width="500" height="500"></canvas>
         </div>
 
         <section class="control-box">
-            <h2 class="editor-title" style="display:inline">Edit Text Lines</h2>
-            <button onclick="onTextInput()">Submit text</button>
-            <button onclick="onDeleteLine()">Delete line</button>
+            <section class="editor-header">
+                <h2 class="editor-title" style="display:inline">Edit Text Lines</h2>
+                <div class="editor-header-buttons">
+                    <button class="text-editor" onclick="onTextInput()"><i
+                            class="fa-regular fa-circle-check"></i></button>
+                    <button class="text-editor" onclick="onDeleteLine()"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </section>
 
             <section class="text-editor-block">
                 <div class="text-editor-buttons">
-                <select class="font-family-pref" onchange="onSelectFontFamily()">
-                    <option value="impact">Impact</option>
-                    <option value="monaco">Monaco</option>
-                    <option value="menlo">Menlo</option>
-                    <option value="consolas">Consolas</option>
-                    <option value="inconsolata">Inconsolata</option>
-                </select>
-                <button onclick="onFontSize(5)">A+</button>
-                <button onclick="onFontSize(-5)">A-</button>
-                <button onclick="onAlignText(100)">l</button>
-                <button onclick="onAlignText(200)">c</button>
-                <button onclick="onAlignText(300)">r</button>
-                <input class="text-color-pref" type="color" value="#ffffff" onchange="onSelectTextColor()">
-                <input class="stroke-color-pref" type="color"  onchange="onSelectStrokeColor()">
+                    <select class="font-family-pref" onchange="onSelectFontFamily()">
+                        <option value="impact">Impact</option>
+                        <option value="monaco">Monaco</option>
+                        <option value="menlo">Menlo</option>
+                        <option value="consolas">Consolas</option>
+                        <option value="inconsolata">Inconsolata</option>
+                    </select>
+                    <button class="text-editor" onclick="onFontSize(5)">&#128474</button>
+                    <button class="text-editor" onclick="onFontSize(-5)">&#128475</button>
+                    <button class="text-editor" onclick="onAlignText(100)"><i
+                            class="fa-solid fa-align-left"></i></button>
+                    <button class="text-editor" onclick="onAlignText(200)"><i
+                            class="fa-solid fa-align-center"></i></button>
+                    <button class="text-editor" onclick="onAlignText(300)"><i
+                            class="fa-solid fa-align-right"></i></button>
+                    <input class="text-color-pref text-editor" type="color" value="#ffffff"
+                    oninput="onSelectTextColor()">
+                    <input class="stroke-color-pref text-editor" type="color" oninput="onSelectStrokeColor()">
                 </div>
                 <hr />
                 <input class="line-input" id="text-input" type="text" name="mems-search" placeholder="Enter your line">
             </section>
-            <button class="share">Share</button>
+            <div class="stickers-gallery"></div>
+            <a href="#" class="mem-actions" onclick="downloadImg(this)" download="my-img.jpg">Download</a>
+            <button class="mem-actions save" onclick="uploadImg()">Save</button>
+            <button class="mem-actions share">Share</button>
+
         </section>
     </section>
 
-
+    <div class="footer-buffer hide"></div>
+    <footer class="full hide">
+        <small>All rights Bla Bla</small>
+    </footer>
     <script src="./js/services/utils-service.js"></script>
+    <script src="./js/services/upload-service.js"></script>
     <script src="./js/services/editor-service.js"></script>
     <script src="./js/services/gallery-service.js"></script>
     <script src="./js/controllers/gallery-controller.js"></script>

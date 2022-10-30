@@ -1,6 +1,9 @@
 'use strict'
 
-
+var gStickers = ['🧠','👄','💋','😕','🥰',
+                    '🙂','👿','🎃','🙌','💩',
+                    '👻','😂','🥳','💍','👑',
+                    '💼','🎩','👕','👼','🥷',]
 var gLines = []
 var gUserPrefs = {
     textColor: 'white',
@@ -11,12 +14,18 @@ var gUserPrefs = {
     isSelect: false,
 }
 
+var gSavedMems = []
+
 function createPosCenter() {
     var pos = {}
     pos.x = 200
     pos.y = 200
 
     return pos
+}
+
+function getStickers(){
+    return gStickers
 }
 
 function getUserPrefs() {
@@ -63,6 +72,12 @@ function getLineLength(ctx, text) {
 function getDragLine() {
    const dragLine = gLines.find(line => line.userPrefs.isDrag === true)
     return dragLine
+}
+
+function moveLine(dx, dy) {
+    var line = getDragLine().userPrefs
+    line.pos.x += dx
+    line.pos.y += dy
 }
 
 function getSelectedLine(){
@@ -135,4 +150,8 @@ function deleteLine(){
     var i = gLines.findIndex(line => line.userPrefs.isSelect === true)
     gLines.splice(i, 1)
     console.log('delet', i)
+}
+
+function setMemSaved(url){
+    gSavedMems.push(url)
 }
