@@ -64,6 +64,8 @@ function onSavedMems() {
     elGallery.classList.add('hide')
     var elEditor = document.querySelector('.main-editor-section')
     elEditor.classList.add('hide')
+    var elSaved = document.querySelector('.main-saved-section')
+    elSaved.classList.remove('hide')
 
     renderSavedMems()
 }

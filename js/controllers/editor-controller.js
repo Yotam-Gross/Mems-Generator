@@ -40,6 +40,8 @@ function onMem() {
 
         var elGallery = document.querySelector('.main-gallery-section')
         elGallery.classList.add('hide')
+        var elSaved = document.querySelector('.main-saved-section')
+        elSaved.classList.add('hide')
         var elEditor = document.querySelector('.main-editor-section')
         elEditor.classList.remove('hide')
 
@@ -217,6 +219,8 @@ function onBackToGallery() {
     elEditor.classList.add('hide')
     var elEditor = document.querySelector('.hero-image')
     elEditor.classList.add('remove')
+    var elSaved = document.querySelector('.main-saved-section')
+    elSaved.classList.add('hide')
 
     cleanUserSetion()
     document.getElementById("text-input").value = ''

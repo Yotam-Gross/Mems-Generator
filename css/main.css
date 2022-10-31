@@ -69,12 +69,12 @@ footer{
     display: none;
 
 }
-/* 
-.footer-buffer{
-    height: 60px;
-    margin-top: 20px;
 
-} */
+.footer-buffer{
+    height: 40px;
+    /* margin-top: 20px; */
+
+}
 
 /* HEADER */
 
@@ -350,7 +350,7 @@ body.menu-open .screen{
       transform: scale(1, 1);
     }
     50% {
-      transform: scale(1.5, 1.5);
+      transform: scale(1.2, 1.2);
     }
     100% {
       transform: scale(1, 1);
